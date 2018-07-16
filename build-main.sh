@@ -1,3 +1,3 @@
 #!/bin/sh
 cd app
-./gradlew test
+./gradlew clean assemble

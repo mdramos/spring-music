@@ -26,18 +26,25 @@ jobs:
   - task: app-tests
     config:
       platform: linux
-
       image_resource:
         type: docker-image
         source: {repository: java, tag: openjdk-8-alpine}
-
       inputs:
       - name: app
-
+      run:
+        path: app/test-main.sh
+  - task: app-build
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: java, tag: openjdk-8-alpine}
+      inputs:
+      - name: app
       run:
         path: app/build-main.sh
 
   - put: deploy-web-app
     params:
-      manifest: resource-app/manifest.yml
+      manifest: app/manifest.yml
       path: app
