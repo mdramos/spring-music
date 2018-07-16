@@ -1,6 +1,6 @@
 ---
 resources:
-- name: spring-music
+- name: app
   type: git
   source:
     uri: https://github.com/mdramos/spring-music.git
@@ -21,7 +21,7 @@ jobs:
   public: true
   serial: true
   plan:
-  - get: spring-music
+  - get: app
     trigger: true
   - task: app-tests
     config:
@@ -32,11 +32,11 @@ jobs:
         source: {repository: java, tag: openjdk-8-alpine}
 
       inputs:
-      - name: spring-music
-        path: spring-music/
+      - name: app
 
       run:
-        path: ./gradlew test
+        path: app/build-main.sh
+
   - put: deploy-web-app
     params:
       manifest: resource-app/manifest.yml
