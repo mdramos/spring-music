@@ -50,4 +50,4 @@ jobs:
   - put: deploy-web-app
     params:
       manifest: app/manifest.yml
-      path: build-output/app.jar
+      path: app/build-output/app.jar
