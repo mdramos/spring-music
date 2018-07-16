@@ -50,4 +50,5 @@ jobs:
   - put: deploy-web-app
     params:
       manifest: app/manifest.yml
-      path: app/build-output/app.jar
+      globs:
+        - volume-demo-releases/volume-demo*.jar
