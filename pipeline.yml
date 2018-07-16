@@ -47,8 +47,6 @@ jobs:
         - name: build-output
 
   - put: deploy-web-app
-    inputs:
-      - name: build-output
     params:
       manifest: app/manifest.yml
       path: app
