@@ -49,4 +49,4 @@ jobs:
   - put: deploy-web-app
     params:
       manifest: app/manifest.yml
-      path: app
+      path: build-output/
