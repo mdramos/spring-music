@@ -1,0 +1,43 @@
+---
+resources:
+- name: spring-music
+  type: git
+  source:
+    uri: https://github.com/mdramos/spring-music.git
+    branch: master
+
+- name: deploy-web-app
+  type: cf
+  source:
+    api: ((cf-api))
+    username: ((cf-username))
+    password: ((cf-password))
+    organization: ((cf-organization))
+    space: ((cf-space))
+    skip_cert_check: true
+
+jobs:
+- name: deploy-app
+  public: true
+  serial: true
+  plan:
+  - get: spring-music
+    trigger: true
+  - task: app-tests
+    config:
+      platform: linux
+
+      image_resource:
+        type: docker-image
+        source: {repository: java, tag: openjdk-8-alpine}
+
+      inputs:
+      - name: spring-music
+        path: spring-music/
+
+      run:
+        path: ./gradlew test
+  - put: deploy-web-app
+    params:
+      manifest: resource-app/manifest.yml
+      path: app
