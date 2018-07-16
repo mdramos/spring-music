@@ -23,16 +23,16 @@ jobs:
   plan:
   - get: app
     trigger: true
-  - task: app-tests
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source: {repository: java, tag: openjdk-8-alpine}
-      inputs:
-      - name: app
-      run:
-        path: app/test-main.sh
+#   - task: app-tests
+#     config:
+#       platform: linux
+#       image_resource:
+#         type: docker-image
+#         source: {repository: java, tag: openjdk-8-alpine}
+#       inputs:
+#       - name: app
+#       run:
+#         path: app/test-main.sh
   - task: app-build
     config:
       platform: linux
@@ -44,9 +44,11 @@ jobs:
       run:
         path: app/build-main.sh
       outputs:
-        - name: build/libs/spring-music-1.0.jar
+        - name: build-output
 
   - put: deploy-web-app
+    inputs:
+      - name: build-output
     params:
       manifest: app/manifest.yml
       path: app
