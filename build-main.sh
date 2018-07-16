@@ -1,3 +1,3 @@
 #!/bin/sh
-cd main
+cd app
 ls
