@@ -42,7 +42,7 @@ jobs:
       inputs:
         - name: app
       outputs:
-        - name: app/build-output
+        - name: build-output1
       run:
         path: app/build-main.sh
       
