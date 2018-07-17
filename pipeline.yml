@@ -40,7 +40,7 @@ jobs:
         type: docker-image
         source: {repository: java, tag: openjdk-8-alpine}
       inputs:
-      - name: app
+        - name: app
       outputs:
         - name: build-output
       run:
@@ -50,5 +50,4 @@ jobs:
   - put: deploy-web-app
     params:
       manifest: app/manifest.yml
-      globs:
-        - volume-demo-releases/volume-demo*.jar
+      path: build-output/app.jar

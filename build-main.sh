@@ -3,5 +3,5 @@ cd app
 ./gradlew clean assemble
 mkdir build-output
 cp build/libs/app-1.0.jar build-output/app.jar
+cp build/libs/app-1.0.jar app/app.jar
 
-ls build-output/*
