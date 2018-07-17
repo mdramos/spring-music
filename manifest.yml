@@ -1,7 +1,7 @@
 ---
 applications:
 - name: spring-music
-  memory: 256M
+  memory: 1G
   random-route: true
   path: ../build-output/app.jar
 
