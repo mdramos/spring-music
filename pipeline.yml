@@ -42,7 +42,7 @@ jobs:
       inputs:
         - name: app
       outputs:
-        - name: build-output
+        - name: app/build-output
       run:
         path: app/build-main.sh
       
@@ -50,4 +50,3 @@ jobs:
   - put: deploy-web-app
     params:
       manifest: app/manifest.yml
-      path: build-output/app.jar
